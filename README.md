@@ -6,8 +6,8 @@ Grief is a strong emotion typically experienced after the loss of a loved one. I
 This project aims at developing a VR-based intervention prototype to support the management of grief.
 
 # Main goals
-• Do a literature review on ICT based solutions for grief;
-• Ideate a VR prototype to address the management of grief;
-• Use the Unity 3D game engine for the design and development of the prototype;
-• Document all the process and deliver all project files;
-• Do a presentation of the conducted work.
+• Do a literature review on ICT based solutions for grief;  
+• Ideate a VR prototype to address the management of grief;  
+• Use the Unity 3D game engine for the design and development of the prototype;  
+• Document all the process and deliver all project files;  
+• Do a presentation of the conducted work.  
