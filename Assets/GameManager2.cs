@@ -8,20 +8,29 @@ public class GameManager2 : MonoBehaviourPunCallbacks
 	public GameObject PlayerPrefab;
     public GameObject SnowMap;
     public GameObject ForestMap;
+    public GameObject Canvas;
     // Start is called before the first frame update
     private void Awake()
     {
-        PhotonNetwork.Instantiate(SnowMap.name, new Vector3(1f, -26f, 45f), Quaternion.identity, 0);
-        PhotonNetwork.Instantiate(PlayerPrefab.name,new Vector3(18f,3f,40f),Quaternion.identity,0);
+        if (PhotonNetwork.IsMasterClient == true)
+        {
+            PhotonNetwork.Instantiate(SnowMap.name, new Vector3(1f, -26f, 45f), Quaternion.identity, 0);
+            Canvas.SetActive(true);
+        }
+        PhotonNetwork.Instantiate(PlayerPrefab.name, new Vector3(18f, 3f, 40f), Quaternion.identity, 0);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.F))
+    }
+
+    public void SpawnSnowMap()
+    {
+        if (PhotonNetwork.IsMasterClient == true)
         {
             PhotonNetwork.Destroy(GameObject.Find("SnowMap(Clone)"));
-            PhotonNetwork.Instantiate(ForestMap.name, new Vector3(24.71502f, -10f, 17.18244f), Quaternion.identity, 0);
+            PhotonNetwork.Instantiate(ForestMap.name, new Vector3(24.71502f, -15f, 17.18244f), Quaternion.identity, 0);
         }
     }
 }
