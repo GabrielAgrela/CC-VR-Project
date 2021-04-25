@@ -24,14 +24,15 @@ public class PlayerOnline : MonoBehaviour
             Debug.Log("MINE");
         }
     }
-    void Update()
+    void LateUpdate()
     {
         if (photonView.IsMine)
         {
-            //Debug.Log("cameraT Y: " + cameraT.eulerAngles.y + "transmormY: " + transform.eulerAngles.y + "mouse x" +Input.GetAxis("Mouse X"));
-            Rigid.MoveRotation(Rigid.rotation * Quaternion.Euler(new Vector3(0, (cameraT.eulerAngles.y- transform.eulerAngles.y ), 0)));
-            transform.position = new Vector3(transformBox.position.x, transformBox.position.y, transformBox.position.z);
-            //Rigid.MovePosition(transform.position + (transform.forward * Input.GetAxis("Vertical") * MoveSpeed) + (transform.right * Input.GetAxis("Horizontal") * MoveSpeed));
+            //Debug.Log("cameraT Y: " + cameraT.eulerAngles.y + "transmormY: " + transform.eulerAngles.y);
+            
+            //transform.Rotate(new Vector3(0, cameraT.eulerAngles.y, 0) * 1f);
+            //transform.position = new Vector3(transformBox.position.x, transformBox.position.y, transformBox.position.z);
+            Rigid.MovePosition(transform.position + (transform.forward * Input.GetAxis("Vertical") * MoveSpeed) + (transform.right * Input.GetAxis("Horizontal") * MoveSpeed));
             if (Input.GetKeyDown("space"))
                 Rigid.AddForce(transform.up * JumpForce);
         }
