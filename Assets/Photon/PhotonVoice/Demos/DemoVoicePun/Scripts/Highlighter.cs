@@ -74,7 +74,7 @@ namespace ExitGames.Demos.DemoPunVoice
         {
             //this.recorderSprite.enabled = this.photonVoiceView.IsRecording;
             this.speakerSprite.enabled = pvv.IsSpeaking;
-            Debug.Log("o som ta:"+ this.speakerSprite.enabled);
+            //Debug.Log("o som ta:"+ this.speakerSprite.enabled);
             //this.bufferLagText.enabled = this.showSpeakerLag && this.photonVoiceView.IsSpeaking;
             /*if (this.bufferLagText.enabled)
             {

@@ -10,6 +10,8 @@ public class move : MonoBehaviour
     public MeshRenderer mr;
     public Transform cameraT;
     public Animator animator;
+    public GameObject manager;
+    public GameObject visionBlocker;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +19,9 @@ public class move : MonoBehaviour
         {
             mr.enabled = false;
             UnityEngine.XR.InputTracking.disablePositionalTracking = true;
+            manager = GameObject.FindWithTag("Manager");
         }
+        
     }
 
     // Update is called once per frame
@@ -25,7 +29,14 @@ public class move : MonoBehaviour
     {
         if (photonView.IsMine)
         {
-            
+            if (manager.GetComponent<GameManager2>().changingMap == true && PhotonNetwork.IsMasterClient == false) 
+            {
+                visionBlocker.SetActive(true);
+            }
+            if (manager.GetComponent<GameManager2>().changingMap == false && PhotonNetwork.IsMasterClient == false) 
+            {
+                visionBlocker.SetActive(false);
+            }
             transform.Rotate(0.0f, cameraT.eulerAngles.y - transform.eulerAngles.y, 0.0f, Space.World);
             cameraT.position = new Vector3(transform.position.x, transform.position.y+1f, transform.position.z);
             Rigid.MovePosition(transform.position + (transform.forward * Input.GetAxis("Vertical") * .05f) + (transform.right * Input.GetAxis("Horizontal") * .05f));
