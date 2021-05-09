@@ -7,14 +7,13 @@ using Photon.Realtime;
 public class GameManager : MonoBehaviourPunCallbacks
 {
 
-    // Start is called before the first frame update
-    private void Awake()
-    {
+	public void setUsername(string username)
+	{
 		PhotonNetwork.ConnectUsingSettings();
-		PhotonNetwork.NickName="geremias";
+		PhotonNetwork.NickName = username;
+	}
 
 
-    }
 
 	public override void OnConnectedToMaster()
 	{

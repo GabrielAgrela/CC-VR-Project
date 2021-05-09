@@ -17,15 +17,17 @@ public class GameManager2 : MonoBehaviourPunCallbacks
     public GameObject Rain;
     public GameObject Canvas;
     public PhotonView photonView;
+    public InputField username;
     public bool changingMap = false;
 
-    public static void kick() 
-    { 
+    public static void kick(string usernameString) 
+    {
+        Debug.Log("entrou1 " + usernameString);
         foreach (KeyValuePair<int, Photon.Realtime.Player> player in PhotonNetwork.CurrentRoom.Players) 
         {
-            Debug.Log("entrou1");
+            Debug.Log("entrou1 "+ usernameString);
             Debug.Log(player.Value.NickName);
-            if (!player.Value.IsLocal && "gmefrmias".Equals(player.Value.NickName))
+            if (!player.Value.IsLocal && usernameString.Equals(player.Value.NickName))
             {
                 Debug.Log("entrou");
                 PhotonNetwork.CloseConnection(player.Value); 
