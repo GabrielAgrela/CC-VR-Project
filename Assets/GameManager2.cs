@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using UnityEngine.UI;
+using System.Linq;
 
 public class GameManager2 : MonoBehaviourPunCallbacks 
 {
@@ -16,15 +18,31 @@ public class GameManager2 : MonoBehaviourPunCallbacks
     public GameObject Canvas;
     public PhotonView photonView;
     public bool changingMap = false;
+
+    public static void kick() 
+    { 
+        foreach (KeyValuePair<int, Photon.Realtime.Player> player in PhotonNetwork.CurrentRoom.Players) 
+        {
+            Debug.Log("entrou1");
+            Debug.Log(player.Value.NickName);
+            if (!player.Value.IsLocal && "gmefrmias".Equals(player.Value.NickName))
+            {
+                Debug.Log("entrou");
+                PhotonNetwork.CloseConnection(player.Value); 
+                break; 
+            } 
+        } 
+    }
+
     // Start is called before the first frame update
     private void Awake()
     {
         if (PhotonNetwork.IsMasterClient == true)
         {
-            PhotonNetwork.Instantiate(SnowMap.name, new Vector3(1f, -26f, 45f), Quaternion.identity, 0);
+            PhotonNetwork.Instantiate(MeadowMap.name, new Vector3(0f, -0f, 17.18244f), Quaternion.identity, 0);
             Canvas.SetActive(true);
         }
-        PhotonNetwork.Instantiate(PlayerPrefab.name, new Vector3(18f, 3f, 40f), Quaternion.identity, 0);
+        PhotonNetwork.Instantiate(PlayerPrefab.name, new Vector3(18f, 10f, 40f), Quaternion.identity, 0);
     }
 
     // Update is called once per frame
@@ -43,7 +61,7 @@ public class GameManager2 : MonoBehaviourPunCallbacks
     public void SpawnSnowMapDelay()
     {
             PhotonNetwork.Destroy(GameObject.FindWithTag("Map"));
-            PhotonNetwork.Instantiate(SnowMap.name, new Vector3(24.71502f, -15f, 17.18244f), Quaternion.identity, 0);
+            PhotonNetwork.Instantiate(SnowMap.name, new Vector3(-30f, -10f, 40f), Quaternion.identity, 0);
     }
 
 
@@ -58,7 +76,7 @@ public class GameManager2 : MonoBehaviourPunCallbacks
     public void SpawnBeachMapDelay()
     {
         PhotonNetwork.Destroy(GameObject.FindWithTag("Map"));
-        PhotonNetwork.Instantiate(BeachMap.name, new Vector3(24.71502f, -15f, 17.18244f), Quaternion.identity, 0);
+        PhotonNetwork.Instantiate(BeachMap.name, new Vector3(0f, 7f, 17.18244f), Quaternion.identity, 0);
     }
 
 
@@ -68,7 +86,7 @@ public class GameManager2 : MonoBehaviourPunCallbacks
         {
             ChangingMap();
             PhotonNetwork.Destroy(GameObject.FindWithTag("Map"));
-            PhotonNetwork.Instantiate(MeadowMap.name, new Vector3(24.71502f, -15f, 17.18244f), Quaternion.identity, 0);
+            PhotonNetwork.Instantiate(MeadowMap.name, new Vector3(0f, -0f, 17.18244f), Quaternion.identity, 0);
         }
     }
     public void SpawnDesertMap()
@@ -77,7 +95,7 @@ public class GameManager2 : MonoBehaviourPunCallbacks
         {
             ChangingMap();
             PhotonNetwork.Destroy(GameObject.FindWithTag("Map"));
-            PhotonNetwork.Instantiate(DesertMap.name, new Vector3(24.71502f, -15f, 17.18244f), Quaternion.identity, 0);
+            PhotonNetwork.Instantiate(DesertMap.name, new Vector3(0f, 7f, 17.18244f), Quaternion.identity, 0);
         }
     }
     public void SpawnForestMap()
@@ -86,7 +104,7 @@ public class GameManager2 : MonoBehaviourPunCallbacks
         {
             ChangingMap();
             PhotonNetwork.Destroy(GameObject.FindWithTag("Map"));
-            PhotonNetwork.Instantiate(ForestMap.name, new Vector3(24.71502f, -15f, 17.18244f), Quaternion.identity, 0);
+            PhotonNetwork.Instantiate(ForestMap.name, new Vector3(0f, -0f, 17.18244f), Quaternion.identity, 0);
         }
     }
     public void SpawnSnow()
@@ -94,7 +112,7 @@ public class GameManager2 : MonoBehaviourPunCallbacks
         if (PhotonNetwork.IsMasterClient == true)
         {
             PhotonNetwork.Destroy(GameObject.FindWithTag("Weather"));
-            PhotonNetwork.Instantiate(Snow.name, new Vector3(24.71502f, -15f, 17.18244f), Quaternion.identity, 0);
+            PhotonNetwork.Instantiate(Snow.name, new Vector3(0f, 20f, 12f), Quaternion.identity, 0);
         }
     }
     public void SpawnRain()
@@ -103,7 +121,7 @@ public class GameManager2 : MonoBehaviourPunCallbacks
         {
             
             PhotonNetwork.Destroy(GameObject.FindWithTag("Weather"));
-            PhotonNetwork.Instantiate(Rain.name, new Vector3(24.71502f, -15f, 17.18244f), Quaternion.identity, 0);
+            PhotonNetwork.Instantiate(Rain.name, new Vector3(0f, 20f, 17.18244f), Quaternion.identity, 0);
         }
     }
 

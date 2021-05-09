@@ -12,6 +12,7 @@ public class move : MonoBehaviour
     public Animator animator;
     public GameObject manager;
     public GameObject visionBlocker;
+    public bool firstTime = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,13 +30,20 @@ public class move : MonoBehaviour
     {
         if (photonView.IsMine)
         {
-            if (manager.GetComponent<GameManager2>().changingMap == true && PhotonNetwork.IsMasterClient == false) 
+            if (manager.GetComponent<GameManager2>().changingMap == true && PhotonNetwork.IsMasterClient == false)// 
             {
                 visionBlocker.SetActive(true);
+                if (firstTime)
+                {
+                    transform.position = new Vector3(transform.position.x, transform.position.y + 15f, transform.position.z);
+                    firstTime = false;
+                }
+                
             }
-            if (manager.GetComponent<GameManager2>().changingMap == false && PhotonNetwork.IsMasterClient == false) 
+            if (manager.GetComponent<GameManager2>().changingMap == false && PhotonNetwork.IsMasterClient == false) //
             {
                 visionBlocker.SetActive(false);
+                firstTime = true;
             }
             transform.Rotate(0.0f, cameraT.eulerAngles.y - transform.eulerAngles.y, 0.0f, Space.World);
             cameraT.position = new Vector3(transform.position.x, transform.position.y+1f, transform.position.z);

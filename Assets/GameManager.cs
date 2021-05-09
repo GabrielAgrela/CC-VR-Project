@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     private void Awake()
     {
 		PhotonNetwork.ConnectUsingSettings();
-		PhotonNetwork.NickName="gmefrmias";
+		PhotonNetwork.NickName="geremias";
 
 
     }

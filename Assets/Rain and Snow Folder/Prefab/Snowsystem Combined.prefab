@@ -4771,7 +4771,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 0cd27492b7d9b0241884aa6ef3235435, type: 2}
-  - {fileID: 2100000, guid: 0cd27492b7d9b0241884aa6ef3235435, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4934,7 +4933,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 3
+      scalar: 17.96
       minScalar: 2.5
       maxCurve:
         serializedVersion: 2
@@ -4987,8 +4986,8 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 120
-      minScalar: 60
+      scalar: 648.91
+      minScalar: 599.9
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5103,8 +5102,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 5
-      minScalar: 0.5
+      scalar: 12.87
+      minScalar: 1.93
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5419,7 +5418,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 1
-    maxNumParticles: 1000
+    maxNumParticles: 10000
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -5684,7 +5683,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 100
+      scalar: 1000
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -9594,7 +9593,6 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: eb03e58ec8d83d9488ae297b71fae2cd, type: 2}
   - {fileID: 2100000, guid: eb03e58ec8d83d9488ae297b71fae2cd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -14411,7 +14409,6 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 74739d21c95872d43874c42441766be5, type: 2}
   - {fileID: 2100000, guid: 74739d21c95872d43874c42441766be5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
