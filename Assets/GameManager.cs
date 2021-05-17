@@ -6,6 +6,28 @@ using Photon.Realtime;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
+	public GameObject PlayerPrefab1;
+	public GameObject PlayerPrefab2;
+	public GameObject PlayerPrefab3;
+	public GameObject PlayerPrefab4;
+	public static GameObject PlayerPrefab;
+
+	public void selectPolice()
+	{
+		PlayerPrefab = PlayerPrefab1;
+	}
+	public void selectCowBoy()
+	{
+		PlayerPrefab = PlayerPrefab2;
+	}
+	public void selectRedWoman()
+	{
+		PlayerPrefab = PlayerPrefab3;
+	}
+	public void selectBlueWoman()
+	{
+		PlayerPrefab = PlayerPrefab4;
+	}
 
 	public void setUsername(string username)
 	{

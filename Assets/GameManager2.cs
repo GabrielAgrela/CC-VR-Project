@@ -8,6 +8,7 @@ using System.Linq;
 public class GameManager2 : MonoBehaviourPunCallbacks 
 {
 	public GameObject PlayerPrefab;
+    public GameObject GameManager1;
     public GameObject SnowMap;
     public GameObject BeachMap;
     public GameObject MeadowMap;
@@ -44,6 +45,7 @@ public class GameManager2 : MonoBehaviourPunCallbacks
             PhotonNetwork.Instantiate(MeadowMap.name, new Vector3(0f, -0f, 17.18244f), Quaternion.identity, 0);
             Canvas.SetActive(true);
         }
+        PlayerPrefab = GameManager.PlayerPrefab;
         PhotonNetwork.Instantiate(PlayerPrefab.name, new Vector3(18f, 10f, 40f), Quaternion.identity, 0);
     }
 
@@ -51,6 +53,7 @@ public class GameManager2 : MonoBehaviourPunCallbacks
     void Update()
     {
     }
+    
 
     public void SpawnSnowMap()
     {
@@ -155,6 +158,7 @@ public class GameManager2 : MonoBehaviourPunCallbacks
     {
         changingMap = false;
     }
+
 
 
 }
