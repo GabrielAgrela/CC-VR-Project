@@ -15,15 +15,17 @@ public class PlayerOnline : MonoBehaviour
     public float MoveSpeed = 2;
     public float JumpForce;
 
+    // Active it's camera only if this GameObject is the client's
     void Awake()
     {
         if (photonView.IsMine)
         {
-
             PlayerCamera.SetActive(true);
             Debug.Log("MINE");
         }
     }
+
+    // not sure
     void LateUpdate()
     {
         if (photonView.IsMine)

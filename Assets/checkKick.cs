@@ -7,13 +7,8 @@ public class checkKick : MonoBehaviour
     public GameObject player;
     public GameObject canvasKicked;
     public bool flagIn = false;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
+    // If moderator presses the kick button (unrelated with this script), GameObject "player" is destroyed, therefore "player" is null and should notify the user of the event
     void Update()
     {
         if (player == null && flagIn == false)

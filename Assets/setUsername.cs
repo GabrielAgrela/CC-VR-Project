@@ -8,18 +8,13 @@ public class setUsername : MonoBehaviour
 {
     public Text usernameTxt;
     public PhotonView photonView;
-    // Start is called before the first frame update
+
+    // set usernames above player's GameObjects heads
     void Awake()
     {
         if (photonView.IsMine)
             usernameTxt.text = PhotonNetwork.LocalPlayer.NickName;
         else
             usernameTxt.text = photonView.Owner.NickName;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

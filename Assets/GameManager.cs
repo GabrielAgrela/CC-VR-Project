@@ -6,37 +6,38 @@ using Photon.Realtime;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
-	public GameObject PlayerPrefab1;
-	public GameObject PlayerPrefab2;
-	public GameObject PlayerPrefab3;
-	public GameObject PlayerPrefab4;
-	public static GameObject PlayerPrefab;
+	public GameObject policePrefab;
+	public GameObject cowBoyPrefab;
+	public GameObject redWomanPrefab;
+	public GameObject blueWomanPrefab;
+	public static GameObject chosenPrefab;
 
+	// On button clicked, select a player prefab model
 	public void selectPolice()
 	{
-		PlayerPrefab = PlayerPrefab1;
+		chosenPrefab = policePrefab;
 	}
 	public void selectCowBoy()
 	{
-		PlayerPrefab = PlayerPrefab2;
+		chosenPrefab = cowBoyPrefab;
 	}
 	public void selectRedWoman()
 	{
-		PlayerPrefab = PlayerPrefab3;
+		chosenPrefab = redWomanPrefab;
 	}
 	public void selectBlueWoman()
 	{
-		PlayerPrefab = PlayerPrefab4;
+		chosenPrefab = blueWomanPrefab;
 	}
 
+	// On unfocusing the text input, connect to the PhotonNetwork and set this user's nickname
 	public void setUsername(string username)
 	{
 		PhotonNetwork.ConnectUsingSettings();
 		PhotonNetwork.NickName = username;
 	}
 
-
-
+	// Once connected join the room, if the room doesn't exist yet, create it as an admin/mod (technically called master client) and set it's properties.
 	public override void OnConnectedToMaster()
 	{
 		PhotonNetwork.JoinLobby(TypedLobby.Default);
@@ -46,15 +47,11 @@ public class GameManager : MonoBehaviourPunCallbacks
 		PhotonNetwork.JoinOrCreateRoom("test123",roomOptions,TypedLobby.Default);
 		Debug.Log("JOINING");
 	}
+
+	// Load scene on join
 	public override void OnJoinedRoom()
 	{
 		Debug.Log("JOINED");
 		PhotonNetwork.LoadLevel("samplescene2");
 	}
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }

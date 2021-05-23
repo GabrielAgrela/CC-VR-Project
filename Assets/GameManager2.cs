@@ -7,7 +7,7 @@ using System.Linq;
 
 public class GameManager2 : MonoBehaviourPunCallbacks 
 {
-	public GameObject PlayerPrefab;
+	public GameObject chosenPrefab;
     public GameObject GameManager1;
     public GameObject SnowMap;
     public GameObject BeachMap;
@@ -21,23 +21,22 @@ public class GameManager2 : MonoBehaviourPunCallbacks
     public InputField username;
     public bool changingMap = false;
 
+
+    // On unfocusing text input, kick input's string named player from the lobby
     public static void kick(string usernameString) 
     {
-        Debug.Log("entrou1 " + usernameString);
+        // With PhotonNetwork, players are stored as KeyValuePairs
         foreach (KeyValuePair<int, Photon.Realtime.Player> player in PhotonNetwork.CurrentRoom.Players) 
         {
-            Debug.Log("entrou1 "+ usernameString);
-            Debug.Log(player.Value.NickName);
             if (!player.Value.IsLocal && usernameString.Equals(player.Value.NickName))
             {
-                Debug.Log("entrou");
                 PhotonNetwork.CloseConnection(player.Value); 
                 break; 
             } 
         } 
     }
 
-    // Start is called before the first frame update
+    // Spawn map for every player and spawn the player GameObject itself
     private void Awake()
     {
         if (PhotonNetwork.IsMasterClient == true)
@@ -45,21 +44,16 @@ public class GameManager2 : MonoBehaviourPunCallbacks
             PhotonNetwork.Instantiate(MeadowMap.name, new Vector3(0f, -0f, 17.18244f), Quaternion.identity, 0);
             Canvas.SetActive(true);
         }
-        PlayerPrefab = GameManager.PlayerPrefab;
-        PhotonNetwork.Instantiate(PlayerPrefab.name, new Vector3(18f, 10f, 40f), Quaternion.identity, 0);
+        chosenPrefab = GameManager.chosenPrefab;
+        PhotonNetwork.Instantiate(chosenPrefab.name, new Vector3(18f, 10f, 40f), Quaternion.identity, 0);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
-    
-
+    // if map button clicked by the moderator, send changeMap() as RPC, making every client know the map is changing, so they block their vision. After a second, instantiate the new map to every client, destroying the previous one.
     public void SpawnSnowMap()
     {
         if (PhotonNetwork.IsMasterClient == true)
         {
-            ChangingMap();
+            photonView.RPC("changeMap", RpcTarget.All);
             Invoke("SpawnSnowMapDelay", 1);
         }
     }
@@ -74,7 +68,7 @@ public class GameManager2 : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.IsMasterClient == true)
         {
-            ChangingMap();
+            photonView.RPC("changeMap", RpcTarget.All);
             Invoke("SpawnBeachMapDelay", 1);
         }
     }
@@ -89,7 +83,7 @@ public class GameManager2 : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.IsMasterClient == true)
         {
-            ChangingMap();
+            photonView.RPC("changeMap", RpcTarget.All);
             PhotonNetwork.Destroy(GameObject.FindWithTag("Map"));
             PhotonNetwork.Instantiate(MeadowMap.name, new Vector3(0f, -0f, 17.18244f), Quaternion.identity, 0);
         }
@@ -98,7 +92,7 @@ public class GameManager2 : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.IsMasterClient == true)
         {
-            ChangingMap();
+            photonView.RPC("changeMap", RpcTarget.All);
             PhotonNetwork.Destroy(GameObject.FindWithTag("Map"));
             PhotonNetwork.Instantiate(DesertMap.name, new Vector3(0f, 7f, 17.18244f), Quaternion.identity, 0);
         }
@@ -107,11 +101,13 @@ public class GameManager2 : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.IsMasterClient == true)
         {
-            ChangingMap();
+            photonView.RPC("changeMap", RpcTarget.All);
             PhotonNetwork.Destroy(GameObject.FindWithTag("Map"));
             PhotonNetwork.Instantiate(ForestMap.name, new Vector3(0f, -0f, 17.18244f), Quaternion.identity, 0);
         }
     }
+
+    // On clicking a weather button, destroy the previous weather element and instantiate the new one to every client.
     public void SpawnSnow()
     {
         if (PhotonNetwork.IsMasterClient == true)
@@ -130,14 +126,7 @@ public class GameManager2 : MonoBehaviourPunCallbacks
         }
     }
 
-    public void ChangingMap()
-    {
-        if (PhotonNetwork.IsMasterClient == true)
-        {
-            photonView.RPC("changeMap", RpcTarget.All);
-        }
-    }
-
+    // Set changingMap to true to every client
     [PunRPC]
     void changeMap()
     {
@@ -145,14 +134,16 @@ public class GameManager2 : MonoBehaviourPunCallbacks
         Invoke("resetChangingMap", 5);
     }
 
+    // After 5 seconds of having their vision blocked, unblock them by sending an RPC setting changing map to false
     public void resetChangingMap()
     {
-         if (PhotonNetwork.IsMasterClient == true)
-         {
-        photonView.RPC("resetChangeMap", RpcTarget.All);
+        if (PhotonNetwork.IsMasterClient == true)
+        {
+            photonView.RPC("resetChangeMap", RpcTarget.All);
         }
     }
 
+    // Set changingMap to false to every client
     [PunRPC]
     void resetChangeMap()
     {
