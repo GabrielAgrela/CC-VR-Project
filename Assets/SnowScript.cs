@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class SnowScript : MonoBehaviour
 {
-    // Start is called before the first frame update
+    // Programatically change this weather element rotation
     void Start()
     {
         transform.Rotate(90.0f, 0f, 0.0f, Space.World);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
