@@ -31,7 +31,7 @@ public class move : MonoBehaviour
         if (photonView.IsMine)
         {
             // If the moderator is changing map and this client is not the moderator, block it's vision by activating the black block GameObject (visionBlocker)
-            if (manager.GetComponent<GameManager2>().changingMap == true && PhotonNetwork.IsMasterClient == false)// 
+            if (manager.GetComponent<GameManager2>().changingMap == true)// && PhotonNetwork.IsMasterClient == false
             {
                 visionBlocker.SetActive(true);
                 if (firstTime)
@@ -42,7 +42,7 @@ public class move : MonoBehaviour
                 
             }
             // If moderator is not changing map or the map changing protocol as ended, unblock it's view
-            if (manager.GetComponent<GameManager2>().changingMap == false && PhotonNetwork.IsMasterClient == false) //
+            if (manager.GetComponent<GameManager2>().changingMap == false ) //&& PhotonNetwork.IsMasterClient == false
             {
                 visionBlocker.SetActive(false);
                 firstTime = true;

@@ -13,6 +13,11 @@ public class GameManager : MonoBehaviourPunCallbacks
 	public static GameObject chosenPrefab;
 	public GameObject EnterUsername;
 
+	public void Awake()
+    {
+		
+	}
+
 	// On button clicked, select a player prefab model
 	public void selectPolice()
 	{
