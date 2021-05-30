@@ -11,23 +11,28 @@ public class GameManager : MonoBehaviourPunCallbacks
 	public GameObject redWomanPrefab;
 	public GameObject blueWomanPrefab;
 	public static GameObject chosenPrefab;
+	public GameObject EnterUsername;
 
 	// On button clicked, select a player prefab model
 	public void selectPolice()
 	{
 		chosenPrefab = policePrefab;
+		EnterUsername.SetActive(true);
 	}
 	public void selectCowBoy()
 	{
 		chosenPrefab = cowBoyPrefab;
+		EnterUsername.SetActive(true);
 	}
 	public void selectRedWoman()
 	{
 		chosenPrefab = redWomanPrefab;
+		EnterUsername.SetActive(true);
 	}
 	public void selectBlueWoman()
 	{
 		chosenPrefab = blueWomanPrefab;
+		EnterUsername.SetActive(true);
 	}
 
 	// On unfocusing the text input, connect to the PhotonNetwork and set this user's nickname
