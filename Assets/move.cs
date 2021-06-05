@@ -26,6 +26,7 @@ public class move : MonoBehaviour
             if (PhotonNetwork.IsMasterClient == true)
             {
                 this.GetComponent<Rigidbody>().useGravity = false;
+                this.GetComponent<CapsuleCollider>().enabled = false;
             }
         }
     }
