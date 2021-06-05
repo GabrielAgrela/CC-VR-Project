@@ -7,6 +7,7 @@ TagManager:
   - Map
   - Weather
   - Manager
+  - CanvasKicked
   layers:
   - Default
   - TransparentFX

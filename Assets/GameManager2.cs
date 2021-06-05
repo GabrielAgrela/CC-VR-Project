@@ -4,7 +4,8 @@ using UnityEngine;
 using Photon.Pun;
 using UnityEngine.UI;
 using System.Linq;
-
+using UnityEngine.XR.Management;
+using UnityEngine.SceneManagement;
 public class GameManager2 : MonoBehaviourPunCallbacks 
 {
 	public GameObject chosenPrefab;
@@ -20,7 +21,33 @@ public class GameManager2 : MonoBehaviourPunCallbacks
     public PhotonView photonView;
     public InputField username;
     public bool changingMap = false;
+    
 
+    public IEnumerator StartXR()
+    {
+        StopXR();
+        Debug.Log("Initializing XR...");
+        yield return XRGeneralSettings.Instance.Manager.InitializeLoader();
+
+        if (XRGeneralSettings.Instance.Manager.activeLoader == null)
+        {
+            Debug.LogError("Initializing XR Failed. Check Editor or Player log for details.");
+        }
+        else
+        {
+            Debug.Log("Starting XR...");
+            XRGeneralSettings.Instance.Manager.StartSubsystems();
+        }
+    }
+
+    public void StopXR()
+    {
+        Debug.Log("Stopping XR...");
+
+        XRGeneralSettings.Instance.Manager.StopSubsystems();
+        XRGeneralSettings.Instance.Manager.DeinitializeLoader();
+        Debug.Log("XR stopped completely.");
+    }
 
     // On unfocusing text input, kick input's string named player from the lobby
     public static void kick(string usernameString) 
@@ -39,10 +66,16 @@ public class GameManager2 : MonoBehaviourPunCallbacks
     // Spawn map for every player and spawn the player GameObject itself
     private void Awake()
     {
+
         if (PhotonNetwork.IsMasterClient == true)
-        {
+        { 
+            StartCoroutine(StartXR());
             PhotonNetwork.Instantiate(MeadowMap.name, new Vector3(0f, -0f, 17.18244f), Quaternion.identity, 0);
             Canvas.SetActive(true);
+        }
+        else
+        {
+            StartCoroutine(StartXR());
         }
         chosenPrefab = GameManager.chosenPrefab;
         PhotonNetwork.Instantiate(chosenPrefab.name, new Vector3(18f, 10f, 40f), Quaternion.identity, 0);
@@ -113,7 +146,7 @@ public class GameManager2 : MonoBehaviourPunCallbacks
         if (PhotonNetwork.IsMasterClient == true)
         {
             PhotonNetwork.Destroy(GameObject.FindWithTag("Weather"));
-            PhotonNetwork.Instantiate(Snow.name, new Vector3(0f, 20f, 12f), Quaternion.identity, 0);
+            PhotonNetwork.Instantiate(Snow.name, new Vector3(0f, 7.3f, 12f), Quaternion.identity, 0);
         }
     }
     public void SpawnRain()

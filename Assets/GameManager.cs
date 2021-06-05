@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
 		
 	}
-
+	
 	// On button clicked, select a player prefab model
 	public void selectPolice()
 	{

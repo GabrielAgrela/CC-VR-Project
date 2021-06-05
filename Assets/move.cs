@@ -13,7 +13,8 @@ public class move : MonoBehaviour
     public GameObject manager;
     public GameObject visionBlocker;
     public bool firstTime = true;
-    
+    public float speed = 0.1f;
+
     // If this script is running on the clients own player GameObject, unrender it's mesh, enable VR settings and set manager.
     void Start()
     {
@@ -22,6 +23,10 @@ public class move : MonoBehaviour
             mr.enabled = false;
             UnityEngine.XR.InputTracking.disablePositionalTracking = true;
             manager = GameObject.FindWithTag("Manager");
+            if (PhotonNetwork.IsMasterClient == true)
+            {
+                this.GetComponent<Rigidbody>().useGravity = false;
+            }
         }
     }
 
@@ -52,7 +57,11 @@ public class move : MonoBehaviour
             cameraT.position = new Vector3(transform.position.x, transform.position.y+1f, transform.position.z); // match the camera's position to the position of the player GameObject (and a unit up, since the camera should be head level).
 
             // Move or rotate to position depending on keys pressed
-            Rigid.MovePosition(transform.position + (transform.forward * Input.GetAxis("Vertical") * .05f) + (transform.right * Input.GetAxis("Horizontal") * .05f)); 
+            Rigid.MovePosition(transform.position + (transform.forward * Input.GetAxis("Vertical") * .05f) + (transform.right * Input.GetAxis("Horizontal") * .05f));
+            if (Input.GetKey(KeyCode.LeftShift))
+                transform.position = new Vector3(transform.position.x, transform.position.y + speed, transform.position.z);
+            if (Input.GetKey(KeyCode.LeftControl))
+                transform.position = new Vector3(transform.position.x, transform.position.y - speed, transform.position.z);
             if (Input.GetKeyDown(KeyCode.E))
                 cameraT.Rotate(0.0f, 45.0f, 0.0f, Space.World);
             if (Input.GetKeyDown(KeyCode.Q))
@@ -60,14 +69,9 @@ public class move : MonoBehaviour
 
             // On W pressed start/end running animation
             if (Input.GetKey(KeyCode.W))
-            {
-                animator.SetBool("isRunning", true);
-            }
-                
+                animator.SetBool("isRunning", true);  
             else
-            {
                 animator.SetBool("isRunning", false);
-            }
                 
         }   
     }
