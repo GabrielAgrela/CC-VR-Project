@@ -146,7 +146,7 @@ public class GameManager2 : MonoBehaviourPunCallbacks
         if (PhotonNetwork.IsMasterClient == true)
         {
             PhotonNetwork.Destroy(GameObject.FindWithTag("Weather"));
-            PhotonNetwork.Instantiate(Snow.name, new Vector3(0f, 7.3f, 12f), Quaternion.identity, 0);
+            PhotonNetwork.Instantiate(Snow.name, new Vector3(0f, 7.31f, 12f), Quaternion.identity, 0);
         }
     }
     public void SpawnRain()
