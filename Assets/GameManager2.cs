@@ -10,13 +10,19 @@ public class GameManager2 : MonoBehaviourPunCallbacks
 {
 	public GameObject chosenPrefab;
     public GameObject GameManager1;
+
     public GameObject SnowMap;
     public GameObject BeachMap;
     public GameObject MeadowMap;
     public GameObject DesertMap;
     public GameObject ForestMap;
+
     public GameObject Snow;
     public GameObject Rain;
+
+    public GameObject ForestSound;
+    public GameObject ClassicalSound;
+
     public GameObject Canvas;
     public PhotonView photonView;
     public InputField username;
@@ -69,7 +75,7 @@ public class GameManager2 : MonoBehaviourPunCallbacks
 
         if (PhotonNetwork.IsMasterClient == true)
         { 
-            StartCoroutine(StartXR());
+           // StartCoroutine(StartXR());
             PhotonNetwork.Instantiate(MeadowMap.name, new Vector3(0f, -0f, 17.18244f), Quaternion.identity, 0);
             Canvas.SetActive(true);
         }
@@ -149,6 +155,7 @@ public class GameManager2 : MonoBehaviourPunCallbacks
             PhotonNetwork.Instantiate(Snow.name, new Vector3(0f, 7.31f, 12f), Quaternion.identity, 0);
         }
     }
+
     public void SpawnRain()
     {
         if (PhotonNetwork.IsMasterClient == true)
@@ -156,6 +163,26 @@ public class GameManager2 : MonoBehaviourPunCallbacks
             
             PhotonNetwork.Destroy(GameObject.FindWithTag("Weather"));
             PhotonNetwork.Instantiate(Rain.name, new Vector3(0f, 20f, 17.18244f), Quaternion.identity, 0);
+        }
+    }
+
+    // On clicking a sound button, destroy the previous melody element and instantiate the new one to every client.
+    public void SpawnForestSound()
+    {
+        if (PhotonNetwork.IsMasterClient == true)
+        {
+            PhotonNetwork.Destroy(GameObject.FindWithTag("Melody"));
+            PhotonNetwork.Instantiate(ForestSound.name, new Vector3(0f, 7.31f, 12f), Quaternion.identity, 0);
+        }
+    }
+
+    public void SpawnClassicalSound()
+    {
+        if (PhotonNetwork.IsMasterClient == true)
+        {
+
+            PhotonNetwork.Destroy(GameObject.FindWithTag("Melody"));
+            PhotonNetwork.Instantiate(ClassicalSound.name, new Vector3(0f, 20f, 17.18244f), Quaternion.identity, 0);
         }
     }
 

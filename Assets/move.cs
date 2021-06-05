@@ -14,10 +14,11 @@ public class move : MonoBehaviour
     public GameObject visionBlocker;
     public bool firstTime = true;
     public float speed = 0.1f;
-
+    public int target = 60;
     // If this script is running on the clients own player GameObject, unrender it's mesh, enable VR settings and set manager.
     void Start()
     {
+
         if (photonView.IsMine)
         {
             mr.enabled = false;
@@ -25,6 +26,7 @@ public class move : MonoBehaviour
             manager = GameObject.FindWithTag("Manager");
             if (PhotonNetwork.IsMasterClient == true)
             {
+                Application.targetFrameRate = target;
                 this.GetComponent<Rigidbody>().useGravity = false;
                 this.GetComponent<CapsuleCollider>().enabled = false;
             }
@@ -36,8 +38,14 @@ public class move : MonoBehaviour
     {
         if (photonView.IsMine)
         {
+            if (PhotonNetwork.IsMasterClient == true)
+            {
+                if (Application.targetFrameRate != target)
+                    Application.targetFrameRate = target;
+            }
+            
             // If the moderator is changing map and this client is not the moderator, block it's vision by activating the black block GameObject (visionBlocker)
-            if (manager.GetComponent<GameManager2>().changingMap == true)// && PhotonNetwork.IsMasterClient == false
+            if (manager.GetComponent<GameManager2>().changingMap == true && PhotonNetwork.IsMasterClient == false)// 
             {
                 visionBlocker.SetActive(true);
                 if (firstTime)
@@ -45,10 +53,10 @@ public class move : MonoBehaviour
                     transform.position = new Vector3(transform.position.x, transform.position.y + 15f, transform.position.z);
                     firstTime = false;
                 }
-                
             }
+
             // If moderator is not changing map or the map changing protocol as ended, unblock it's view
-            if (manager.GetComponent<GameManager2>().changingMap == false ) //&& PhotonNetwork.IsMasterClient == false
+            if (manager.GetComponent<GameManager2>().changingMap == false && PhotonNetwork.IsMasterClient == false) //
             {
                 visionBlocker.SetActive(false);
                 firstTime = true;

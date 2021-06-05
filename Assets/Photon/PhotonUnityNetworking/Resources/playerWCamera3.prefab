@@ -474,6 +474,26 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 4300000, guid: 477c3a0d92aa1424db2ac70c581d1745, type: 3}
+    - target: {fileID: 5866393681825511033, guid: f21e8f987ab19f640aaf7aefe054b2c8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866393681825511033, guid: f21e8f987ab19f640aaf7aefe054b2c8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866393681825511033, guid: f21e8f987ab19f640aaf7aefe054b2c8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866393681825511033, guid: f21e8f987ab19f640aaf7aefe054b2c8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866393681825511033, guid: f21e8f987ab19f640aaf7aefe054b2c8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
     - target: {fileID: 8280517900371331707, guid: f21e8f987ab19f640aaf7aefe054b2c8, type: 3}
       propertyPath: prefixField
       value: -1
