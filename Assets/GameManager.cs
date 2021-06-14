@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 	public GameObject blueWomanPrefab;
 	public static GameObject chosenPrefab;
 	public GameObject EnterUsername;
+	public GameObject Loading;
 
 	public void Awake()
     {
@@ -50,6 +51,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 	// Once connected join the room, if the room doesn't exist yet, create it as an admin/mod (technically called master client) and set it's properties.
 	public override void OnConnectedToMaster()
 	{
+		Loading.SetActive(true);
 		PhotonNetwork.JoinLobby(TypedLobby.Default);
 		Debug.Log("connected");
 		RoomOptions roomOptions = new RoomOptions();
