@@ -1,4 +1,6 @@
 using System.Collections;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
@@ -69,19 +71,26 @@ public class GameManager2 : MonoBehaviourPunCallbacks
         } 
     }
 
-    // Spawn map for every player and spawn the player GameObject itself
+    // Spawn map for every player and spawn the player GameObject itself, Also turns on XRVR depending on wether the client is a moderator
     private void Awake()
     {
 
         if (PhotonNetwork.IsMasterClient == true)
         { 
-           // StartCoroutine(StartXR());
             PhotonNetwork.Instantiate(MeadowMap.name, new Vector3(0f, -0f, 17.18244f), Quaternion.identity, 0);
             Canvas.SetActive(true);
         }
         else
         {
-            StartCoroutine(StartXR());
+            try
+            {
+                StartCoroutine(StartXR());
+            }
+            catch (Exception e)
+            {
+                print("error starting XRVR"+e);
+            }
+            
         }
         chosenPrefab = GameManager.chosenPrefab;
         PhotonNetwork.Instantiate(chosenPrefab.name, new Vector3(18f, 10f, 40f), Quaternion.identity, 0);

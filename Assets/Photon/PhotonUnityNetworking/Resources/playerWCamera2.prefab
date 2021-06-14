@@ -442,6 +442,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: player Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 1541408245991271308, guid: f21e8f987ab19f640aaf7aefe054b2c8, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2148958988629680905, guid: f21e8f987ab19f640aaf7aefe054b2c8, type: 3}
       propertyPath: Rigid
       value: 
@@ -500,11 +504,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8062725012185067037, guid: f21e8f987ab19f640aaf7aefe054b2c8, type: 3}
       propertyPath: m_PositionModel.ExtrapolateOption
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8062725012185067037, guid: f21e8f987ab19f640aaf7aefe054b2c8, type: 3}
       propertyPath: m_PositionModel.InterpolateOption
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8062725012185067037, guid: f21e8f987ab19f640aaf7aefe054b2c8, type: 3}
       propertyPath: m_PositionModel.TeleportIfDistanceGreaterThan

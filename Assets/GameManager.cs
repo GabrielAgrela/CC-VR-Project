@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 	public static GameObject chosenPrefab;
 	public GameObject EnterUsername;
 	public GameObject Loading;
-
+	
 	public void Awake()
     {
 		
@@ -46,24 +46,35 @@ public class GameManager : MonoBehaviourPunCallbacks
 	{
 		PhotonNetwork.ConnectUsingSettings();
 		PhotonNetwork.NickName = username;
+		//if (connectedToMaster == true)
+			//OnConnectedToMaster();
 	}
 
 	// Once connected join the room, if the room doesn't exist yet, create it as an admin/mod (technically called master client) and set it's properties.
 	public override void OnConnectedToMaster()
 	{
 		Loading.SetActive(true);
+		Debug.Log("JOINING LOBBY");
 		PhotonNetwork.JoinLobby(TypedLobby.Default);
-		Debug.Log("connected");
+	}
+
+	// Load scene on join
+	public override void OnJoinedLobby()
+	{
+		Debug.Log("CONNECTED TO LOBBY");
 		RoomOptions roomOptions = new RoomOptions();
-		roomOptions.MaxPlayers=5;
-		PhotonNetwork.JoinOrCreateRoom("test123",roomOptions,TypedLobby.Default);
-		Debug.Log("JOINING");
+		roomOptions.MaxPlayers = 5;
+		if (chosenPrefab == policePrefab)
+			PhotonNetwork.CreateRoom("UMA");
+		else
+			PhotonNetwork.JoinRoom("UMA");
+		Debug.Log("JOINING ROOM");
 	}
 
 	// Load scene on join
 	public override void OnJoinedRoom()
 	{
-		Debug.Log("JOINED");
+		Debug.Log("JOINED ROOM");
 		PhotonNetwork.LoadLevel("samplescene2");
 	}
 }

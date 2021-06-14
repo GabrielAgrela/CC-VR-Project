@@ -41,6 +41,7 @@ public class move : MonoBehaviour
     {
         if (photonView.IsMine)
         {
+            //If moderator client then fps max 60
             if (PhotonNetwork.IsMasterClient == true)
             {
                 if (Application.targetFrameRate != target)
