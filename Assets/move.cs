@@ -70,7 +70,7 @@ public class move : MonoBehaviour
             cameraT.position = new Vector3(transform.position.x, transform.position.y+1f, transform.position.z); // match the camera's position to the position of the player GameObject (and a unit up, since the camera should be head level).
 
             // Move or rotate to position depending on keys pressed
-            if (nickNameInputField.GetComponent<InputField>().isFocused == false)
+            if (PhotonNetwork.IsMasterClient == false || nickNameInputField.GetComponent<InputField>().isFocused == false )
             {
                 Rigid.MovePosition(transform.position + (transform.forward * Input.GetAxis("Vertical") * .05f) + (transform.right * Input.GetAxis("Horizontal") * .05f));
                 if (Input.GetKey(KeyCode.LeftShift))

@@ -2998,5 +2998,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8883243616999844722, guid: 7a75e2b783e6cf74dbec69ff1d63bd72, type: 3}
+      propertyPath: logLevel
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8883243616999844722, guid: 7a75e2b783e6cf74dbec69ff1d63bd72, type: 3}
+      propertyPath: globalSpeakersLogLevel
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8883243616999844722, guid: 7a75e2b783e6cf74dbec69ff1d63bd72, type: 3}
+      propertyPath: globalRecordersLogLevel
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a75e2b783e6cf74dbec69ff1d63bd72, type: 3}

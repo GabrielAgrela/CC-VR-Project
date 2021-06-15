@@ -14,12 +14,9 @@ public class checkKick : MonoBehaviour
         if (player == null && flagIn == false)
         {
             flagIn = true;
-            Debug.Log("test1 " + player);
+            Debug.Log("Kicked " + player);
             Instantiate(canvasKicked);
         }
-            
-        else{ Debug.Log("test2 " + player); }
-        
 
     }
 }
