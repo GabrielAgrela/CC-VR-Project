@@ -9,6 +9,7 @@ TagManager:
   - Manager
   - CanvasKicked
   - Melody
+  - Canvas
   layers:
   - Default
   - TransparentFX
