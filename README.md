@@ -13,7 +13,7 @@ This project aims at developing a VR-based intervention prototype to support the
 • Do a presentation of the conducted work.  
 
 # Documenting the project technicalities
-- Launcher
+- Launcher Scene
   - LauncherGameManager
     - Ao clicar no botão de um modelo, guardá-lo para a instanciá-lo na proxima scene (Room). Depois segue-se o input do username.
     - Ao receber o username e ao carregar enter/desfocar-se do input holder, connecta-se aos servers da Photon criando um lobby (no caso de ter selecionado o modelo do policia) ou entrando no lobby criado (no caso de qualquer outro modelo selecionado).
@@ -27,7 +27,7 @@ This project aims at developing a VR-based intervention prototype to support the
       - Placeholder de loading e animação do mesmo.
   - Camera
     - A camera é o tipo de camera normal esperado num jogo não VR. Isto porque o launcher deve ser executado no computador sem o uso do headset, de modo a introduzir os dados do utilizador.
-- Room
+- Room Scene
   - RoomGameManager
     - Kick
       - Recebe o input em string do user a kickar, procura-o recebendo a lista de jogadores na Room em pares valores-chave e cancela a conexão com os servers da Photon.
@@ -51,7 +51,7 @@ This project aims at developing a VR-based intervention prototype to support the
     - Ao ser removido/kickado da Room, o modelo do utilizador desaparece, ao ser null, ativa este canvas.
   - Map/Models/Elements (generico)
     - Objetos instanciado por networking pelos botões.
-- Players
+- Player's Objects
   - Modelo (generico)
     - DefaultPlayerBody
       - Mesh renderer/ Steam VR_Play Area
