@@ -29,6 +29,7 @@ This project aims at developing a VR-based intervention prototype to support the
     - A camera é o tipo de camera normal esperado num jogo não VR. Isto porque o launcher deve ser executado no computador sem o uso do headset, de modo a introduzir os dados do utilizador.
 
 
+
 - Room Scene
   - RoomGameManager
     - Kick
