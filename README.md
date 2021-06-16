@@ -30,7 +30,7 @@ This project aims at developing a VR-based intervention prototype to support the
 
 
 
-######- Room Scene
+- Room Scene
   - RoomGameManager
     - Kick
       - Recebe o input em string do user a kickar, procura-o recebendo a lista de jogadores na Room em pares valores-chave e cancela a conexão com os servers da Photon.
