@@ -1,5 +1,5 @@
 # CG-VR-Project
-Complicated Grief Virtual Reality Therapy University Project 
+Complicated Grief Virtual Reality Therapy Universidade da Madeira Project 
 
 # Motivation
 Grief is a strong emotion typically experienced after the loss of a loved one. It is common to experience sadness and hopelessness, and these feelings of loss are often resolved over time. However, some people do not improve over time sustaining strong feelings of loss that have a negative impact on their lives. This is a disorder known as complicated grief.
