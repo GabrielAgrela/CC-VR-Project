@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6404979900143237558}
   - component: {fileID: -2285157703749056311}
   m_Layer: 0
-  m_Name: Meadow
+  m_Name: MeadowMap
   m_TagString: Map
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

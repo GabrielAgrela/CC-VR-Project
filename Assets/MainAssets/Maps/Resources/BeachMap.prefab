@@ -214,7 +214,7 @@ GameObject:
   - component: {fileID: 7730624663986331734}
   - component: {fileID: 7508353001025912820}
   m_Layer: 0
-  m_Name: Beach
+  m_Name: BeachMap
   m_TagString: Map
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -182,6 +182,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: CanvasKicked
       objectReference: {fileID: 0}
+    - target: {fileID: 1844751456138819163, guid: 1049ba3529d6ffb44a35ba2e521106f8, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1844751456138819164, guid: 1049ba3529d6ffb44a35ba2e521106f8, type: 3}
+      propertyPath: m_RenderMode
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1844751456138819165, guid: 1049ba3529d6ffb44a35ba2e521106f8, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -352,15 +360,15 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 520311454}
-        m_TargetAssemblyTypeName: GameManager2, Assembly-CSharp
-        m_MethodName: SpawnRain
-        m_Mode: 1
+        m_TargetAssemblyTypeName: RoomGameManager, Assembly-CSharp
+        m_MethodName: SpawnWeather
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: RainWeather
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &228018947
@@ -522,15 +530,15 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 520311454}
-        m_TargetAssemblyTypeName: GameManager2, Assembly-CSharp
-        m_MethodName: SpawnForestMap
-        m_Mode: 1
+        m_TargetAssemblyTypeName: RoomGameManager, Assembly-CSharp
+        m_MethodName: SpawnMap
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: ForestMap
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &505406865
@@ -757,7 +765,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chosenPrefab: {fileID: 0}
-  GameManager1: {fileID: 0}
   SnowMap: {fileID: 8552007494614030516, guid: 519b2d827bb084246b5c84ea3a1d7f13, type: 3}
   BeachMap: {fileID: 7380227770322960762, guid: 1e452476ef589634c85ca401b7e228e4, type: 3}
   MeadowMap: {fileID: 5510543161588520581, guid: ea5dee881e8b3db49a76c27203f99d9f, type: 3}
@@ -891,15 +898,15 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 520311454}
-        m_TargetAssemblyTypeName: GameManager2, Assembly-CSharp
-        m_MethodName: SpawnMeadowMap
-        m_Mode: 1
+        m_TargetAssemblyTypeName: RoomGameManager, Assembly-CSharp
+        m_MethodName: SpawnMap
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: MeadowMap
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &604953342
@@ -1337,15 +1344,15 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 520311454}
-        m_TargetAssemblyTypeName: GameManager2, Assembly-CSharp
-        m_MethodName: SpawnSnow
-        m_Mode: 1
+        m_TargetAssemblyTypeName: RoomGameManager, Assembly-CSharp
+        m_MethodName: SpawnWeather
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: SnowWeather
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1113711824
@@ -1790,15 +1797,15 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 520311454}
-        m_TargetAssemblyTypeName: GameManager2, Assembly-CSharp
-        m_MethodName: SpawnClassicalSound
-        m_Mode: 1
+        m_TargetAssemblyTypeName: RoomGameManager, Assembly-CSharp
+        m_MethodName: SpawnMelody
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: ClassicalSound
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1429411911
@@ -2070,15 +2077,15 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 520311454}
-        m_TargetAssemblyTypeName: GameManager2, Assembly-CSharp
-        m_MethodName: SpawnForestSound
-        m_Mode: 1
+        m_TargetAssemblyTypeName: RoomGameManager, Assembly-CSharp
+        m_MethodName: SpawnMelody
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: ForestSound
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1655230079
@@ -2282,15 +2289,15 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 520311454}
-        m_TargetAssemblyTypeName: GameManager2, Assembly-CSharp
-        m_MethodName: SpawnBeachMap
-        m_Mode: 1
+        m_TargetAssemblyTypeName: RoomGameManager, Assembly-CSharp
+        m_MethodName: SpawnMap
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: BeachMap
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1744223047
@@ -2496,15 +2503,15 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 520311454}
-        m_TargetAssemblyTypeName: GameManager2, Assembly-CSharp
-        m_MethodName: SpawnSnowMap
-        m_Mode: 1
+        m_TargetAssemblyTypeName: RoomGameManager, Assembly-CSharp
+        m_MethodName: SpawnMap
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: SnowMap
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1826626561
@@ -2894,15 +2901,15 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 520311454}
-        m_TargetAssemblyTypeName: GameManager2, Assembly-CSharp
-        m_MethodName: SpawnDesertMap
-        m_Mode: 1
+        m_TargetAssemblyTypeName: RoomGameManager, Assembly-CSharp
+        m_MethodName: SpawnMap
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: DesertMap
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &2003374339

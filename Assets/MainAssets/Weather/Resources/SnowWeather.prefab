@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -6215684094626544586}
   - component: {fileID: -1183758496354160139}
   m_Layer: 0
-  m_Name: Snowsystem 3(Clone)
+  m_Name: SnowWeather
   m_TagString: Weather
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -11,26 +11,13 @@ using UnityEngine.SceneManagement;
 public class RoomGameManager : MonoBehaviourPunCallbacks 
 {
 	public GameObject chosenPrefab;
-    public GameObject GameManager1;
-
-    public GameObject SnowMap;
-    public GameObject BeachMap;
-    public GameObject MeadowMap;
-    public GameObject DesertMap;
-    public GameObject ForestMap;
-
-    public GameObject Snow;
-    public GameObject Rain;
-
-    public GameObject ForestSound;
-    public GameObject ClassicalSound;
 
     public GameObject Canvas;
     public PhotonView photonView;
     public InputField username;
     public bool changingMap = false;
     
-
+    //VR initialization methods
     public IEnumerator StartXR()
     {
         StopXR();
@@ -57,7 +44,7 @@ public class RoomGameManager : MonoBehaviourPunCallbacks
         Debug.Log("XR stopped completely.");
     }
 
-    // On unfocusing text input, kick input's string named player from the lobby
+    // On unfocusing text input, kick input's string named player from the room
     public static void kick(string usernameString) 
     {
         // With PhotonNetwork, players are stored as KeyValuePairs
@@ -71,13 +58,13 @@ public class RoomGameManager : MonoBehaviourPunCallbacks
         } 
     }
 
-    // Spawn map for every player and spawn the player GameObject itself, Also turns on XRVR depending on wether the client is a moderator
+    // Spawn map for every player and spawn the player GameObject itself, Also turns on XRVR depending on whether the client is a moderator
     private void Awake()
     {
 
         if (PhotonNetwork.IsMasterClient == true)
-        { 
-            PhotonNetwork.Instantiate(MeadowMap.name, new Vector3(0f, -0f, 17.18244f), Quaternion.identity, 0);
+        {
+            PhotonNetwork.Instantiate("DesertMap", new Vector3(0f, 7f, 17.18244f), Quaternion.identity, 0);
             Canvas.SetActive(true);
         }
         else
@@ -88,7 +75,7 @@ public class RoomGameManager : MonoBehaviourPunCallbacks
             }
             catch (Exception e)
             {
-                print("error starting XRVR"+e);
+                print("error starting XRVR: "+e);
             }
             
         }
@@ -96,125 +83,93 @@ public class RoomGameManager : MonoBehaviourPunCallbacks
         PhotonNetwork.Instantiate(chosenPrefab.name, new Vector3(18f, 10f, 40f), Quaternion.identity, 0);
     }
 
-    // if map button clicked by the moderator, send changeMap() as RPC, making every client know the map is changing, so they block their vision. After a second, instantiate the new map to every client, destroying the previous one.
-    public void SpawnSnowMap()
+    // if map button clicked by the moderator, send changeMapFlag() as RPC, making every client know the map is changing, so they block their vision. After a second, instantiate the new map to every client, destroying the previous one.
+    public void SpawnMap(string map)
     {
         if (PhotonNetwork.IsMasterClient == true)
         {
-            photonView.RPC("changeMap", RpcTarget.All);
-            Invoke("SpawnSnowMapDelay", 1);
-        }
-    }
-    public void SpawnSnowMapDelay()
-    {
+            photonView.RPC("changeMapFlag", RpcTarget.All);
             PhotonNetwork.Destroy(GameObject.FindWithTag("Map"));
-            PhotonNetwork.Instantiate(SnowMap.name, new Vector3(-30f, -10f, 40f), Quaternion.identity, 0);
-    }
-
-
-    public void SpawnBeachMap()
-    {
-        if (PhotonNetwork.IsMasterClient == true)
-        {
-            photonView.RPC("changeMap", RpcTarget.All);
-            Invoke("SpawnBeachMapDelay", 1);
-        }
-    }
-    public void SpawnBeachMapDelay()
-    {
-        PhotonNetwork.Destroy(GameObject.FindWithTag("Map"));
-        PhotonNetwork.Instantiate(BeachMap.name, new Vector3(0f, 7f, 17.18244f), Quaternion.identity, 0);
-    }
-
-
-    public void SpawnMeadowMap()
-    {
-        if (PhotonNetwork.IsMasterClient == true)
-        {
-            photonView.RPC("changeMap", RpcTarget.All);
-            PhotonNetwork.Destroy(GameObject.FindWithTag("Map"));
-            PhotonNetwork.Instantiate(MeadowMap.name, new Vector3(0f, -0f, 17.18244f), Quaternion.identity, 0);
-        }
-    }
-    public void SpawnDesertMap()
-    {
-        if (PhotonNetwork.IsMasterClient == true)
-        {
-            photonView.RPC("changeMap", RpcTarget.All);
-            PhotonNetwork.Destroy(GameObject.FindWithTag("Map"));
-            PhotonNetwork.Instantiate(DesertMap.name, new Vector3(0f, 7f, 17.18244f), Quaternion.identity, 0);
-        }
-    }
-    public void SpawnForestMap()
-    {
-        if (PhotonNetwork.IsMasterClient == true)
-        {
-            photonView.RPC("changeMap", RpcTarget.All);
-            PhotonNetwork.Destroy(GameObject.FindWithTag("Map"));
-            PhotonNetwork.Instantiate(ForestMap.name, new Vector3(0f, -0f, 17.18244f), Quaternion.identity, 0);
+            switch (map)
+            {
+                case "SnowMap":
+                    PhotonNetwork.Instantiate(map, new Vector3(-30f, -10f, 40f), Quaternion.identity, 0);
+                    break;
+                case "MeadowMap":
+                    PhotonNetwork.Instantiate(map, new Vector3(0f, -0f, 17.18244f), Quaternion.identity, 0);
+                    break;
+                case "ForestMap":
+                    PhotonNetwork.Instantiate(map, new Vector3(0f, -0f, 17.18244f), Quaternion.identity, 0);
+                    break;
+                case "DesertMap":
+                    PhotonNetwork.Instantiate(map, new Vector3(0f, 7f, 17.18244f), Quaternion.identity, 0);
+                    break;
+                case "BeachMap":
+                    PhotonNetwork.Instantiate(map, new Vector3(0f, 7f, 17.18244f), Quaternion.identity, 0);
+                    break;
+                default:
+                    print("Wrong map string");
+                    break;
+            }
         }
     }
 
     // On clicking a weather button, destroy the previous weather element and instantiate the new one to every client.
-    public void SpawnSnow()
+    public void SpawnWeather(string weather)
     {
-        if (PhotonNetwork.IsMasterClient == true)
+        PhotonNetwork.Destroy(GameObject.FindWithTag("Weather"));
+        switch (weather)
         {
-            PhotonNetwork.Destroy(GameObject.FindWithTag("Weather"));
-            PhotonNetwork.Instantiate(Snow.name, new Vector3(0f, 7.31f, 12f), Quaternion.identity, 0);
+            case "SnowWeather":
+                PhotonNetwork.Instantiate(weather, new Vector3(0f, 7.31f, 12f), Quaternion.identity, 0);
+                break;
+            case "RainWeather":
+                PhotonNetwork.Instantiate(weather, new Vector3(0f, 20f, 17.18244f), Quaternion.identity, 0);
+                break;
+            default:
+                print("Wrong weather string");
+                break;
         }
     }
 
-    public void SpawnRain()
+    // On clicking a melody button, destroy the previous melody element and instantiate the new one to every client.
+    public void SpawnMelody(string melody)
     {
-        if (PhotonNetwork.IsMasterClient == true)
+        PhotonNetwork.Destroy(GameObject.FindWithTag("Melody"));
+        switch (melody)
         {
-            
-            PhotonNetwork.Destroy(GameObject.FindWithTag("Weather"));
-            PhotonNetwork.Instantiate(Rain.name, new Vector3(0f, 20f, 17.18244f), Quaternion.identity, 0);
-        }
-    }
-
-    // On clicking a sound button, destroy the previous melody element and instantiate the new one to every client.
-    public void SpawnForestSound()
-    {
-        if (PhotonNetwork.IsMasterClient == true)
-        {
-            PhotonNetwork.Destroy(GameObject.FindWithTag("Melody"));
-            PhotonNetwork.Instantiate(ForestSound.name, new Vector3(0f, 7.31f, 12f), Quaternion.identity, 0);
-        }
-    }
-
-    public void SpawnClassicalSound()
-    {
-        if (PhotonNetwork.IsMasterClient == true)
-        {
-
-            PhotonNetwork.Destroy(GameObject.FindWithTag("Melody"));
-            PhotonNetwork.Instantiate(ClassicalSound.name, new Vector3(0f, 20f, 17.18244f), Quaternion.identity, 0);
+            case "ForestSound":
+                PhotonNetwork.Instantiate(melody, new Vector3(0f, 7.31f, 12f), Quaternion.identity, 0);
+                break;
+            case "ClassicalSound":
+                PhotonNetwork.Instantiate(melody, new Vector3(0f, 20f, 17.18244f), Quaternion.identity, 0);
+                break;
+            default:
+                print("Wrong melody string");
+                break;
         }
     }
 
     // Set changingMap to true to every client
     [PunRPC]
-    void changeMap()
+    void changeMapFlag()
     {
         changingMap = true;
         Invoke("resetChangingMap", 5);
     }
 
-    // After 5 seconds of having their vision blocked, unblock them by sending an RPC setting changing map to false
+    // After 5 seconds of having their vision blocked, unblock them by sending an RPC setting changingMap to false
     public void resetChangingMap()
     {
         if (PhotonNetwork.IsMasterClient == true)
         {
-            photonView.RPC("resetChangeMap", RpcTarget.All);
+            photonView.RPC("resetchangeMapFlag", RpcTarget.All);
         }
     }
 
     // Set changingMap to false to every client
     [PunRPC]
-    void resetChangeMap()
+    void resetchangeMapFlag()
     {
         changingMap = false;
     }
