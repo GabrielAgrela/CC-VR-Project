@@ -13,7 +13,6 @@ This project aims at developing a VR-based intervention prototype to support the
 • Do a presentation of the conducted work.  
 
 # Documenting the project technicalities
-Scenes
 - Launcher
   - LauncherGameManager
     - Ao clicar no botão de um modelo, guardá-lo para a instanciá-lo na proxima scene (Room). Depois segue-se o input do username.
