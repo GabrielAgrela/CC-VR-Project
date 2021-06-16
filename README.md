@@ -27,6 +27,8 @@ This project aims at developing a VR-based intervention prototype to support the
       - Placeholder de loading e animação do mesmo.
   - Camera
     - A camera é o tipo de camera normal esperado num jogo não VR. Isto porque o launcher deve ser executado no computador sem o uso do headset, de modo a introduzir os dados do utilizador.
+
+
 - Room Scene
   - RoomGameManager
     - Kick
@@ -51,6 +53,8 @@ This project aims at developing a VR-based intervention prototype to support the
     - Ao ser removido/kickado da Room, o modelo do utilizador desaparece, ao ser null, ativa este canvas.
   - Map/Models/Elements (generico)
     - Objetos instanciado por networking pelos botões.
+
+
 - Player's Objects
   - Modelo (generico)
     - DefaultPlayerBody
