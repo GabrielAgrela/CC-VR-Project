@@ -43,15 +43,15 @@ Scenes
       - Dependendo do botão escolhido instancia o objeto po network.
     - RPC (generico)
       - Ao ser chamado anteriormente, corre este método em todos os clientes (não moderadores) que o possuem, de modo a saberem que devem cobrir (ou não) os olhos com o objeto preto.
-    - Canvas
-      - Maps/Weather/Melodies
-        - Botões para cada um dos tipos de objeto a instanciar, definidos pelo parâmetro e tratados no switch-case dos métodos de spawn no RoomGameManager. 
-      - Kick
-        - Placeholder recebe o username do utilizador a kickar, executado ao carregar enter ou perder focus.
-    - CanvasKicked
-      - Ao ser removido/kickado da Room, o modelo do utilizador desaparece, ao ser null, ativa este canvas.
-    - Map/Models/Elements (generico)
-      - Objetos instanciado por networking pelos botões.
+  - Canvas
+    - Maps/Weather/Melodies
+      - Botões para cada um dos tipos de objeto a instanciar, definidos pelo parâmetro e tratados no switch-case dos métodos de spawn no RoomGameManager. 
+    - Kick
+      - Placeholder recebe o username do utilizador a kickar, executado ao carregar enter ou perder focus.
+  - CanvasKicked
+    - Ao ser removido/kickado da Room, o modelo do utilizador desaparece, ao ser null, ativa este canvas.
+  - Map/Models/Elements (generico)
+    - Objetos instanciado por networking pelos botões.
 - Players
   - Modelo (generico)
     - DefaultPlayerBody
