@@ -74,7 +74,7 @@ This project aims at developing a VR-based intervention prototype to support the
           - Cap fps
           - No caso de ser o moderador, transforma o fps do cliente em 60.
         - un/Block Vision
-          - No caso de ser um utilizador normal, e a variável manipulada pelo metodo RPC no RoomGameManager “changingMap” ser true, ativa o cubo e bloqueia a visão do utilizador.
+          - No caso de ser um utilizador normal, e a variável manipulada pelo metodo RPC no RoomGameManager “changingMap” ser true, ativa o cubo e bloqueia a visão do utilizador.<img src="/Assets/MainAssets/Extra/Resources/cube.gif?raw=true">
           - O metodo rpc será chamado outra vez e changingMap será false depois de 5s.
         - Match model with Headset rotation & Y position
           - Iguala o valor da rotação no eixo Y do modelo do utilizador com o da camera (de modo a rodar ao mesmo tempo que o utilizador na vida real) e aumenta o valor da posição da camera uma unidade no eixo do Y de modo a ficar a altura da cabeça do modelo do utilizador.
